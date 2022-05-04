@@ -28,6 +28,7 @@ async function run(){
          const fruit =await fruitCollection.findOne(query);
          res.send(fruit);
         //  console.log(fruit);
+        //  console.log(fruit);
       });
       app.put('/fruit/:id',async(req,res)=>{
         const id =req.params.id;
