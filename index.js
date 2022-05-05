@@ -37,12 +37,27 @@ async function run(){
         const options = { upsert: true };
         const updatedDoc = {
           $set:{
-            quantity : updatedFruit.quantity
+            quantity : updatedFruit.quantity,
+            price : updatedFruit.price
           }
         }
         const result = await fruitCollection.updateOne(filter,updatedDoc,options);
         res.send(result);
      });
+
+  //    app.put('/fruit/:id',async(req,res)=>{
+  //     const id =req.params.id;
+  //     const updatedFruit = req.body;
+  //     const filter = {_id:ObjectId(id)};
+  //     const options = { upsert: true };
+  //     const updatedDoc = {
+  //       $set:{
+  //         price : updatedFruit.price
+  //       }
+  //     }
+  //     const result = await fruitCollection.updateOne(filter,updatedDoc,options);
+  //     res.send(result);
+  //  });
 
      app.delete('/fruit/:id',async(req,res)=>{
       const id =req.params.id;
@@ -52,6 +67,12 @@ async function run(){
       const result = await fruitCollection.deleteOne(query);
       res.send(result);
    });
+
+   app.post('/fruit',async(req,res)=>{
+    const newItem = req.body;
+    const result = await fruitCollection.insertOne(newItem);
+    res.send(result);
+})
 
 
     }
