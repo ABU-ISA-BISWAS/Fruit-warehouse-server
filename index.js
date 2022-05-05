@@ -27,7 +27,7 @@ async function run(){
          const query = {_id:ObjectId(id)};
          const fruit =await fruitCollection.findOne(query);
          res.send(fruit);
-        //  console.log(fruit);
+        
         //  console.log(fruit);
       });
       app.put('/fruit/:id',async(req,res)=>{
