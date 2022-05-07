@@ -23,9 +23,7 @@ function verifyJWT (req,res,next){
     req.decoded = decoded;
     next();
   });
-  
-  
-
+   
 }
 
 
@@ -69,20 +67,6 @@ async function run() {
       res.send(result);
     });
 
-    //    app.put('/fruit/:id',async(req,res)=>{
-    //     const id =req.params.id;
-    //     const updatedFruit = req.body;
-    //     const filter = {_id:ObjectId(id)};
-    //     const options = { upsert: true };
-    //     const updatedDoc = {
-    //       $set:{
-    //         price : updatedFruit.price
-    //       }
-    //     }
-    //     const result = await fruitCollection.updateOne(filter,updatedDoc,options);
-    //     res.send(result);
-    //  });
-
     app.delete('/fruit/:id', async (req, res) => {
       const id = req.params.id;
       console.log(id);
@@ -114,19 +98,11 @@ async function run() {
            
     });
 
-    //AUTH
     app.post('/login', async(req,res)=>{
       const user =req.body;
       var token = jwt.sign( user, process.env.ACCESS_TOKEN_SECRET,{expiresIn: '30d'});
       res.send({token});
     });
-
-
-    
-
-
-
-
 
   }
   finally {
@@ -134,8 +110,6 @@ async function run() {
   }
 }
 run().catch(console.dir);
-
-
 
 app.get('/', (req, res) => {
   res.send('Hello fruit warehouse')
